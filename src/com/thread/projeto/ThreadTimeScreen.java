@@ -39,15 +39,24 @@ public class ThreadTimeScreen extends JDialog {
         }
     };
 
-    public Runnable threadStop = new Runnable() {
+
+    public Runnable threadRunDuo = new Runnable() {
         @Override
         public void run() {
-
+            while(true) {
+                showTimeDuo.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm.ss")
+                        .format(Calendar.getInstance().getTime()));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
 
         }
     };
 
-
+    private Thread threadDuoTime;
     private Thread threadOneTime;
 
     public ThreadTimeScreen(){ /** Executa o que tiver dentro no momento **/
@@ -96,10 +105,28 @@ public class ThreadTimeScreen extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 threadOneTime = new Thread(threadRun);
+                threadDuoTime = new Thread(threadRunDuo);
                 threadOneTime.start();
+                threadDuoTime.start();
+
+                buttonStart.setEnabled(false);
+                buttonStop.setEnabled(true);
 
             }
         });
+
+        buttonStop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                threadOneTime.stop();
+                threadDuoTime.stop();
+
+                buttonStop.setEnabled(false);
+                buttonStart.setEnabled(true);
+            }
+        });
+
+
 
         add(jPanel, BorderLayout.WEST);
         setVisible(true); /** TORNA A TELA VISIVEL PARA O USUARIO **/
