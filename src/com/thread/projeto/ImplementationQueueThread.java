@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class ImplementationQueueThread extends Thread{
 
-    private static ConcurrentLinkedQueue<RowThreadObject> DAUGHTER_PINE =
+    private static final ConcurrentLinkedQueue<RowThreadObject> DAUGHTER_PINE =
             new ConcurrentLinkedQueue<RowThreadObject>();
 
     public static void add(RowThreadObject row) {
@@ -15,12 +15,28 @@ public class ImplementationQueueThread extends Thread{
 
     @Override
     public void run() {
-        Iterator interator = DAUGHTER_PINE.iterator();
+        Iterator<RowThreadObject> interator = DAUGHTER_PINE.iterator();
         while(interator.hasNext()) {
-            RowThreadObject process = (RowThreadObject) interator.next();
+            RowThreadObject process = interator.next();
 
 
+            /** Processa 10 mil notas fiscais
+             * GERAR UMA LISTA ENORME DE PDFS
+             * GERAR UM ENVIO DE EMAIL PARA VARIAS PESSOAS.
+             * */
 
+            interator.remove();
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
         super.run();
