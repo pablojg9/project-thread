@@ -9,6 +9,7 @@ import java.util.Calendar;
 
 public class ThreadTimeScreen extends JDialog {
 
+
     /** ATTRIBUTE JPANEL **/
     private JPanel jPanel = new JPanel(new GridBagLayout());
 
@@ -111,7 +112,6 @@ public class ThreadTimeScreen extends JDialog {
 
                 buttonStart.setEnabled(false);
                 buttonStop.setEnabled(true);
-
             }
         });
 
