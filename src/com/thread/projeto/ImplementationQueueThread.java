@@ -12,41 +12,51 @@ public class ImplementationQueueThread extends Thread{
 
     }
 
+   public static void remove(RowThreadObject rowRemove){
+        DAUGHTER_PINE.remove(rowRemove);
+   }
+
+
     @Override
     public void run() {
         System.out.println("Fila Rodando com sucesso!");
 
-        Iterator<RowThreadObject> interator = DAUGHTER_PINE.iterator();
 
-        synchronized (interator) { //Bloquear o acesso a está lista por outro pocessos!
-            while(interator.hasNext()) {
-                RowThreadObject process = interator.next();
+        while (true) {
+            synchronized (DAUGHTER_PINE) { //Bloquear o acesso a está lista por outro pocessos!
+                Iterator<RowThreadObject> interator = DAUGHTER_PINE.iterator();
 
-                /** Processa 10 mil notas fiscais
-                 * GERAR UMA LISTA ENORME DE PDFS
-                 * GERAR UM ENVIO DE EMAIL PARA VARIAS PESSOAS.
-                 * */
+                while (interator.hasNext()) {
+                    RowThreadObject process = interator.next();
 
-                System.out.println("--------------------------------------------------");
+                    /** Processa 10 mil notas fiscais
+                     * GERAR UMA LISTA ENORME DE PDFS
+                     * GERAR UM ENVIO DE EMAIL PARA VARIAS PESSOAS.
+                     * */
 
-                System.out.println(process.getName());
-                System.out.println(process.getEmail());
+                    System.out.println("--------------------------------------------------");
 
-                interator.remove();
-                try {
-                    Thread.sleep(200);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    System.out.println("Nome: " + process.getName());
+                    System.out.println("Email: " + process.getEmail());
+
+                    interator.remove();
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
+            try {
+                Thread.sleep(1000); //Dar um tempo para descarga da memoria
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            super.run();
         }
 
-        try {
-            Thread.sleep(1000); //Dar um tempo para descarga da memoria
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
-        super.run();
+
+
     }
 }
