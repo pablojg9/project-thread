@@ -14,6 +14,8 @@ public class ImplementationQueueThread extends Thread{
 
     @Override
     public void run() {
+        System.out.println("Fila Rodando com sucesso!");
+
         Iterator<RowThreadObject> interator = DAUGHTER_PINE.iterator();
 
         synchronized (interator) { //Bloquear o acesso a está lista por outro pocessos!
