@@ -16,7 +16,6 @@ public class ImplementationQueueThread extends Thread{
         DAUGHTER_PINE.remove(rowRemove);
    }
 
-
     @Override
     public void run() {
         System.out.println("Fila Rodando com sucesso!");
@@ -54,9 +53,5 @@ public class ImplementationQueueThread extends Thread{
             }
             super.run();
         }
-
-
-
-
     }
 }

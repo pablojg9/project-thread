@@ -88,7 +88,6 @@ public class ThreadTimeScreenDuo extends JDialog{
             }
         });
 
-
         instanceRow.start();
         add(jPanel, BorderLayout.WEST);
         setVisible(true); /** TORNA A TELA VISIVEL PARA O USUARIO **/
