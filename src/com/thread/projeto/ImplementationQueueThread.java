@@ -28,9 +28,12 @@ public class ImplementationQueueThread extends Thread{
                 while (interator.hasNext()) {
                     RowThreadObject process = interator.next();
 
-                    /** Processa 10 mil notas fiscais
-                     * GERAR UMA LISTA ENORME DE PDFS
-                     * GERAR UM ENVIO DE EMAIL PARA VARIAS PESSOAS.
+                    /**
+                     * EXEMPLOS:
+                     * "Processa 10 mil notas fiscais"
+                     * "GERAR UMA LISTA ENORME DE PDFS"
+                     * "GERAR UM ENVIO DE EMAIL PARA VARIAS PESSOAS".
+                     *
                      * */
 
                     System.out.println("--------------------------------------------------");
