@@ -73,7 +73,7 @@ public class ThreadTimeScreenDuo extends JDialog{
                     instanceRow.start();
                 }
 
-                for(int counter = 0; counter <= 100; counter++) {
+                for(int counter = 1; counter <= 100; counter++) {
                     RowThreadObject rowThread = new RowThreadObject();
 
                     rowThread.setName(showTime.getText());
