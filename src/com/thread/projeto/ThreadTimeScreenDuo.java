@@ -67,24 +67,35 @@ public class ThreadTimeScreenDuo extends JDialog{
         buttonStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RowThreadObject rowThread = new RowThreadObject();
 
-                rowThread.setName(showTime.getText());
-                rowThread.setEmail(showTimeDuo.getText());
+                if (instanceRow == null) {
+                    instanceRow = new ImplementationQueueThread();
+                    instanceRow.start();
+                }
 
-                instanceRow.add(rowThread);
+                for(int counter = 0; counter <= 100; counter++) {
+                    RowThreadObject rowThread = new RowThreadObject();
 
+                    rowThread.setName(showTime.getText());
+                    rowThread.setEmail(showTimeDuo.getText() + " " + counter);
+
+                    instanceRow.add(rowThread);
+
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
+
+                }
             }
         });
 
         buttonStop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RowThreadObject rowThreadDuo = new RowThreadObject();
-                rowThreadDuo.getName();
-                rowThreadDuo.getEmail();
-
-                instanceRow.remove(rowThreadDuo);
+                instanceRow.stop();
+                instanceRow = null;
             }
         });
 

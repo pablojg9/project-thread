@@ -15,7 +15,7 @@ public class ImplementationQueueThread extends Thread{
    public static void remove(RowThreadObject rowRemove){
         DAUGHTER_PINE.remove(rowRemove);
    }
-
+   
     @Override
     public void run() {
         System.out.println("Fila Rodando com sucesso!");
